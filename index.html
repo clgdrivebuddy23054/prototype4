@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kirana Store</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body data-theme="dark">
+    
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h1 class="sidebar-title">Kirana Store</h1>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-link active" data-tab="dashboard">
+                <i class="fas fa-home nav-icon"></i>
+                Dashboard
+            </a>
+            <a href="#" class="nav-link" data-tab="products">
+                <i class="fas fa-box nav-icon"></i>
+                Products
+            </a>
+            <a href="#" class="nav-link" data-tab="orders">
+                <i class="fas fa-shopping-cart nav-icon"></i>
+                Orders
+            </a>
+            <a href="#" class="nav-link" data-tab="customers">
+                <i class="fas fa-users nav-icon"></i>
+                Customers
+            </a>
+            <a href="#" class="nav-link" data-tab="settings">
+                <i class="fas fa-cog nav-icon"></i>
+                Settings
+            </a>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <h2 class="page-title" id="pageTitle">Dashboard</h2>
+            </div>
+            <div class="header-right">
+                <div class="theme-switch">
+                    <span class="theme-label" id="themeLabel">Dark</span>
+                    <label class="switch">
+                        <input type="checkbox" id="themeToggle">
+                        <span class="slider"></span>
+                    </label>
+                    <span class="theme-label">Light</span>
+                </div>
+                <button class="notification-btn" id="notificationBtn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Content Area -->
+        <main class="content" id="mainContent">
+            <!-- Dashboard Tab -->
+            <div class="tab-content active" id="dashboard-tab">
+                <!-- Metrics Cards -->
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-content">
+                            <div class="metric-header">
+                                <h3>Total Sales</h3>
+                                <div class="metric-change positive">
+                                    <i class="fas fa-arrow-up"></i>
+                                    <span id="salesChange">15.2%</span>
+                                </div>
+                            </div>
+                            <div class="metric-value" id="totalSales">$8,250</div>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <div class="metric-content">
+                            <div class="metric-header">
+                                <h3>Orders</h3>
+                                <div class="metric-change positive">
+                                    <i class="fas fa-arrow-up"></i>
+                                    <span id="ordersChange">3.7%</span>
+                                </div>
+                            </div>
+                            <div class="metric-value" id="totalOrders">1,230</div>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <div class="metric-content">
+                            <div class="metric-header">
+                                <h3>Customers</h3>
+                            </div>
+                            <div class="metric-value" id="totalCustomers">1,015</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dashboard Grid -->
+                <div class="dashboard-grid">
+                    <!-- Overview Chart -->
+                    <div class="overview-section">
+                        <div class="section-card">
+                            <div class="card-header">
+                                <h3>Overview</h3>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="overviewChart"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Additional Overview Info -->
+                        <div class="section-card overview-info">
+                            <div class="card-header">
+                                <h3>Overview</h3>
+                                <span class="period-label">Past week</span>
+                            </div>
+                            <div class="overview-details">
+                                <div class="overview-item">
+                                    <i class="fas fa-exclamation-triangle warning-icon"></i>
+                                    <div>
+                                        <h4>New feature available</h4>
+                                        <p>Check out the latest update now!</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Announcements -->
+                    <div class="announcements-section">
+                        <div class="section-card">
+                            <div class="card-header">
+                                <h3>Announcements</h3>
+                            </div>
+                            <div class="announcement-item">
+                                <div class="announcement-icon">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                                <div class="announcement-content">
+                                    <h4>New feature available</h4>
+                                    <p>Check out the latest update now!</p>
+                                    <button class="dismiss-btn">Dismiss</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- AI Assistant -->
+                        <div class="section-card ai-section">
+                            <div class="ai-header">
+                                <div class="ai-title">AI</div>
+                                <button class="voice-btn" id="voiceBtn">
+                                    <i class="fas fa-microphone"></i>
+                                </button>
+                            </div>
+                            <div class="ai-chat" id="aiChat">
+                                <div class="ai-message">
+                                    <p>How can I assist you today?</p>
+                                </div>
+                            </div>
+                            <div class="ai-input-container">
+                                <input type="text" class="ai-input" id="aiInput" placeholder="Type your message...">
+                                <button class="ai-send-btn" id="aiSendBtn">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products Tab -->
+            <div class="tab-content" id="products-tab">
+                <div class="tab-header">
+                    <h3>Products Management</h3>
+                    <div class="tab-actions">
+                        <input type="text" class="search-input" id="productSearch" placeholder="Search products...">
+                        <select class="filter-select" id="categoryFilter">
+                            <option value="">All Categories</option>
+                        </select>
+                        <button class="btn btn-primary" id="addProductBtn">
+                            <i class="fas fa-plus"></i>
+                            Add Product
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Category</th>
+                                <th>Stock</th>
+                                <th>Price</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productsTableBody">
+                            <tr>
+                                <td colspan="6" class="loading-row">Loading products...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Orders Tab -->
+            <div class="tab-content" id="orders-tab">
+                <div class="tab-header">
+                    <h3>Orders Management</h3>
+                    <div class="tab-actions">
+                        <input type="text" class="search-input" id="orderSearch" placeholder="Search orders...">
+                        <input type="date" class="date-input" id="orderDate">
+                        <button class="btn btn-primary" id="addOrderBtn">
+                            <i class="fas fa-plus"></i>
+                            New Order
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Date</th>
+                                <th>Items</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ordersTableBody">
+                            <tr>
+                                <td colspan="7" class="loading-row">Loading orders...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Customers Tab -->
+            <div class="tab-content" id="customers-tab">
+                <div class="tab-header">
+                    <h3>Customers Management</h3>
+                    <div class="tab-actions">
+                        <input type="text" class="search-input" id="customerSearch" placeholder="Search customers...">
+                        <button class="btn btn-primary" id="addCustomerBtn">
+                            <i class="fas fa-plus"></i>
+                            Add Customer
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Total Orders</th>
+                                <th>Total Spent</th>
+                                <th>Last Order</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="customersTableBody">
+                            <tr>
+                                <td colspan="7" class="loading-row">Loading customers...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Settings Tab -->
+            <div class="tab-content" id="settings-tab">
+                <div class="settings-container">
+                    <div class="settings-section">
+                        <h3>General Settings</h3>
+                        <div class="settings-form">
+                            <div class="form-group">
+                                <label>Store Name</label>
+                                <input type="text" class="form-input" id="storeName" placeholder="Enter store name">
+                            </div>
+                            <div class="form-group">
+                                <label>Owner Name</label>
+                                <input type="text" class="form-input" id="ownerName" placeholder="Enter owner name">
+                            </div>
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="tel" class="form-input" id="storePhone" placeholder="Enter phone number">
+                            </div>
+                            <div class="form-group">
+                                <label>Address</label>
+                                <textarea class="form-input" id="storeAddress" placeholder="Enter store address"></textarea>
+                            </div>
+                            <button class="btn btn-primary">Save Settings</button>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>AI Assistant Settings</h3>
+                        <div class="settings-form">
+                            <div class="form-group">
+                                <label>Gemini API Key</label>
+                                <input type="password" class="form-input" id="geminiApiKey" placeholder="Enter API key">
+                                <small class="form-help">Get your API key from <a href="https://makersuite.google.com/app/apikey" target="_blank">Google AI Studio</a></small>
+                            </div>
+                            <div class="form-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="enableAI">
+                                    <span class="checkmark"></span>
+                                    Enable AI Assistant
+                                </label>
+                            </div>
+                            <button class="btn btn-primary" id="saveAISettings">Save AI Settings</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    
+    <!-- Add Product Modal -->
+    <div class="modal hidden" id="addProductModal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Product</h3>
+                <button class="modal-close" data-modal="addProductModal">&times;</button>
+            </div>
+            <form class="modal-form" id="addProductForm">
+                <div class="form-group">
+                    <label>Product Name</label>
+                    <input type="text" class="form-input" id="productName" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select class="form-input" id="productCategory" required>
+                            <option value="">Select Category</option>
+                            <option value="Grains">Grains</option>
+                            <option value="Pulses">Pulses</option>
+                            <option value="Oils">Oils</option>
+                            <option value="Spices">Spices</option>
+                            <option value="Dairy">Dairy</option>
+                            <option value="Snacks">Snacks</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Unit</label>
+                        <select class="form-input" id="productUnit" required>
+                            <option value="kg">Kilogram</option>
+                            <option value="L">Liter</option>
+                            <option value="pcs">Pieces</option>
+                            <option value="g">Gram</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Current Stock</label>
+                        <input type="number" class="form-input" id="currentStock" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Min Stock</label>
+                        <input type="number" class="form-input" id="minStock" min="0" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Cost Price</label>
+                        <input type="number" class="form-input" id="costPrice" min="0" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Selling Price</label>
+                        <input type="number" class="form-input" id="sellingPrice" min="0" step="0.01" required>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" data-modal="addProductModal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Order Modal -->
+    <div class="modal hidden" id="addOrderModal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>New Order</h3>
+                <button class="modal-close" data-modal="addOrderModal">&times;</button>
+            </div>
+            <form class="modal-form" id="addOrderForm">
+                <div class="form-group">
+                    <label>Customer</label>
+                    <select class="form-input" id="orderCustomer" required>
+                        <option value="">Select Customer</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Product</label>
+                    <select class="form-input" id="orderProduct" required>
+                        <option value="">Select Product</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Quantity</label>
+                        <input type="number" class="form-input" id="orderQuantity" min="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Unit Price</label>
+                        <input type="number" class="form-input" id="orderUnitPrice" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Total Amount</label>
+                    <input type="number" class="form-input" id="orderTotal" readonly>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" data-modal="addOrderModal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Create Order</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Customer Modal -->
+    <div class="modal hidden" id="addCustomerModal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Customer</h3>
+                <button class="modal-close" data-modal="addCustomerModal">&times;</button>
+            </div>
+            <form class="modal-form" id="addCustomerForm">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" class="form-input" id="customerName" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-input" id="customerEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="tel" class="form-input" id="customerPhone" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Address</label>
+                    <textarea class="form-input" id="customerAddress" placeholder="Enter customer address"></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" data-modal="addCustomerModal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Customer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification Modal -->
+    <div class="modal hidden" id="notificationModal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Notifications</h3>
+                <button class="modal-close" data-modal="notificationModal">&times;</button>
+            </div>
+            <div class="notification-list">
+                <div class="notification-item">
+                    <div class="notification-icon warning">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="notification-content">
+                        <h4>Low Stock Alert</h4>
+                        <p>3 products are running low on stock</p>
+                        <small>2 hours ago</small>
+                    </div>
+                </div>
+                <div class="notification-item">
+                    <div class="notification-icon success">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="notification-content">
+                        <h4>Order Completed</h4>
+                        <p>Order #1234 has been completed</p>
+                        <small>4 hours ago</small>
+                    </div>
+                </div>
+                <div class="notification-item">
+                    <div class="notification-icon info">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                    <div class="notification-content">
+                        <h4>New Customer</h4>
+                        <p>John Doe has been added to customers</p>
+                        <small>6 hours ago</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
